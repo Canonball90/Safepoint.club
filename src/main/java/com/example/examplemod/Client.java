@@ -11,6 +11,8 @@ import com.example.examplemod.Module.Module;
 import com.example.examplemod.Module.PLAYER.AntiAim;
 import com.example.examplemod.Module.PLAYER.BlockReach;
 import com.example.examplemod.Module.EXPLOIT.FakeCreative;
+import com.example.examplemod.Module.PLAYER.MiddleClickPearl;
+import com.example.examplemod.Module.PLAYER.Suicide;
 import com.example.examplemod.Module.RENDER.*;
 import font.FontUtils;
 import net.minecraft.client.Minecraft;
@@ -72,6 +74,10 @@ public class Client {
         modules.add(new Chat());
         modules.add(new AutoClicker());
         modules.add(new AntiAim());
+        modules.add(new MiddleClickPearl());
+        modules.add(new Strafe());
+        modules.add(new SwingAnimation());
+        modules.add(new Suicide());
 
         clickGuiManager = new ClickGuiManager();
 

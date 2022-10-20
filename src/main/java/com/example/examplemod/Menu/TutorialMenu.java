@@ -5,6 +5,8 @@ import com.example.examplemod.Utils.RenderUtils;
 import com.example.examplemod.Utils.particle.ParticleSystem;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureManager;
+import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import yea.bushroot.clickgui.ClickGuiManager;
 

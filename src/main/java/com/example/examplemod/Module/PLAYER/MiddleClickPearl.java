@@ -18,7 +18,7 @@ public class MiddleClickPearl extends Module {
     private boolean clicked;
 
     public MiddleClickPearl() {
-        super("MCP", 0, Category.MISC);
+        super("MCP", 0, Category.PLAYER);
     }
 
     @SubscribeEvent

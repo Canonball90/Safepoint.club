@@ -50,7 +50,7 @@ public class Module {
         MOVEMENT,
         PLAYER,
         RENDER,
-        MISC,
+        HUD,
         CLIENT,
         EXPLOIT;
     }

@@ -1,6 +1,7 @@
 package com.example.examplemod.UI;
 
 import com.example.examplemod.Client;
+import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.CLIENT.Panic;
 import com.example.examplemod.Module.Module;
 import font.FontUtils;
@@ -37,21 +38,7 @@ public class ui {
 
                     int posY = 10;
 
-                    try {
-                        String text = Client.cName + " | " + mc.getSession().getUsername() + " | " + Objects.requireNonNull(mc.getCurrentServerData()).serverIP +
-                                " | FPS: " + Minecraft.getDebugFPS() + " | Ping: " + mc.getCurrentServerData().pingToServer;
 
-                        drawRect(5, 5, FontUtils.normal.getStringWidth(text) > 190 ? (int) (FontUtils.normal.getStringWidth(text) + 14) : 200, 14, new Color(0x151515).hashCode());
-                        drawRect(5, 5, FontUtils.normal.getStringWidth(text) > 190 ? (int) (FontUtils.normal.getStringWidth(text) + 14) : 200, 4, rainbow(300));
-
-                        FontUtils.normal.drawString(text, 10, posY, -1);
-                    } catch (Exception ex) {
-                        drawRect(5, 5, 200, 14, new Color(0x151515).hashCode());
-                        drawRect(5, 5, 200, 4, rainbow(300));
-
-                        FontUtils.normal.drawString(Client.cName + " | " + mc.getSession().getUsername() +
-                                " | FPS: " + Minecraft.getDebugFPS(), 10, posY, -1);
-                    }
 
                 /*
                 fr.drawString("Tutorial§aClient §fB§a1.0", 5, 5, -1);
@@ -77,15 +64,6 @@ public class ui {
                         }
                     }
 
-                    for (Module module : enabledMods) {
-                        Gui.drawRect(sr.getScaledWidth(), y, sr.getScaledWidth() - 2,
-                                y + 10, rainbow(counter[0] * 300));
-
-                        fr.drawStringWithShadow(module.name, sr.getScaledWidth() - 4 - fr.getStringWidth(module.name),
-                                y, rainbow(counter[0] * 300));
-                        y += 10;
-                        counter[0]++;
-                    }
                 } else {
                     Minecraft.getMinecraft().fontRenderer.drawString("FPS: " + Minecraft.getDebugFPS(), 5, 5, -1);
                 }

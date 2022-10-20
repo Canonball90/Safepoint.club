@@ -6,6 +6,8 @@ import com.example.examplemod.Module.CLIENT.PVPBot;
 import com.example.examplemod.Module.CLIENT.Panic;
 import com.example.examplemod.Module.COMBAT.*;
 import com.example.examplemod.Module.EXPLOIT.HackerDetector;
+import com.example.examplemod.Module.HUD.HackList;
+import com.example.examplemod.Module.HUD.Watermark;
 import com.example.examplemod.Module.MOVEMENT.*;
 import com.example.examplemod.Module.Module;
 import com.example.examplemod.Module.PLAYER.AntiAim;
@@ -78,6 +80,8 @@ public class Client {
         modules.add(new Strafe());
         modules.add(new SwingAnimation());
         modules.add(new Suicide());
+        modules.add(new Watermark());
+        modules.add(new HackList());
 
         clickGuiManager = new ClickGuiManager();
 

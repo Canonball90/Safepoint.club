@@ -18,7 +18,7 @@ public class key {
                 if (Keyboard.getEventKey() == Keyboard.KEY_RSHIFT && !Panic.isPanic) {
                     Minecraft.getMinecraft().displayGuiScreen(ExampleMod.instance.clickGui);
                 }
-                if (Keyboard.getEventKey() == Keyboard.KEY_INSERT && !Panic.isPanic) {
+                if (Keyboard.getEventKey() == Keyboard.KEY_RCONTROL && !Panic.isPanic) {
                     Minecraft.getMinecraft().displayGuiScreen(new ClickGuiScreen());
                 }
             }

@@ -34,8 +34,8 @@ public class Frame {
 		this.x = 0;
 		this.y = 80;
 		this.dragX = 0;
-		this.barHeight = 12;
-		this.open = false;
+		this.barHeight = 13;
+		this.open = true;
 		this.isDragging = false;
 		int tY = this.barHeight;
 

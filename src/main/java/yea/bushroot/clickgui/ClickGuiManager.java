@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.example.examplemod.Module.Module;
 import com.example.examplemod.Utils.RenderUtils;
 import com.example.examplemod.Utils.particle.ParticleSystem;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import yea.bushroot.clickgui.component.Component;
@@ -36,6 +37,8 @@ public class ClickGuiManager extends GuiScreen {
 	public void initGui() {
 		
 	}
+
+	private final ResourceLocation background = new ResourceLocation("borgor.png");
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -44,6 +47,9 @@ public class ClickGuiManager extends GuiScreen {
 
 		this.particleSystem.tick(20);
 		this.particleSystem.render();
+
+		mc.renderEngine.bindTexture(background);
+		drawScaledCustomSizeModalRect(5, Minecraft.getMinecraft().currentScreen.height - 50, 0, 0, 50, 50, 50, 50, 50, 50);
 
 		for(Frame frame : frames) {
 			frame.renderFrame(this.fontRenderer);
@@ -112,4 +118,5 @@ public class ClickGuiManager extends GuiScreen {
 	public boolean doesGuiPauseGame() {
 		return true;
 	}
+
 }

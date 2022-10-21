@@ -1,6 +1,7 @@
 package com.example.examplemod.Module.RENDER;
 
 import com.example.examplemod.Module.Module;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,7 +34,7 @@ public class NameTags extends Module {
         GL11.glScaled(scale, scale, scale);
         int health = (int) Math.ceil(entity.getHealth());
 
-        EntityRenderer.drawNameplate(mc.fontRenderer, entity.getDisplayName().getFormattedText() + " " + health, 0, 0, 0, 0,
+        EntityRenderer.drawNameplate(mc.fontRenderer, entity.getDisplayName().getFormattedText() + ChatFormatting.RED + " \u2764 " + health, 0, 0, 0, 0,
                 mc.getRenderManager().playerViewY,
                 mc.getRenderManager().playerViewX,
                 mc.gameSettings.thirdPersonView == 2, false

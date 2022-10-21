@@ -1,5 +1,7 @@
 package com.example.examplemod.Module;
 
+import com.example.examplemod.Utils.ChatUtils;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -59,8 +61,10 @@ public class Module {
         toggled = !toggled;
         if (toggled) {
             onEnable();
+            ChatUtils.sendMessage(ChatFormatting.GREEN + "Enabled " + ChatFormatting.RESET +this.name);
         } else {
             onDisable();
+            ChatUtils.sendMessage(ChatFormatting.RED + "Disabled " + ChatFormatting.RESET + this.name);
         }
     }
 

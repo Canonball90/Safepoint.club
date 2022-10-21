@@ -179,7 +179,7 @@ public class RenderUtils {
      * Draw a 1 pixel wide vertical line. Args : x, y1, y2, color
      */
 
-    public static void drawVerticalLine(int x, int startY, int endY, int color)
+    public static void drawVerticalLine(int x, int startY, int endY, int color, int rgb)
     {
         if (endY < startY)
         {

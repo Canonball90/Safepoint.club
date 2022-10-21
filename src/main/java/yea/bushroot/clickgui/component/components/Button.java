@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.Module;
 import com.example.examplemod.UI.ui;
+import com.example.examplemod.Utils.RenderUtils;
 import yea.bushroot.clickgui.Effect;
 import yea.bushroot.clickgui.Setting;
 import yea.bushroot.clickgui.component.Component;
@@ -69,10 +70,13 @@ public class Button extends yea.bushroot.clickgui.component.Component {
 	@Override
 	public void renderComponent() {
 		Effect effect = new Effect(parent.getX(), parent.getY(), 1, 12);
-		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, this.isHovered ? 0xFF222222 : 0xFF111111);
+		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, this.isHovered ? new Color(25,25,25, 200).getRGB() : new Color(25,25,25, 180).getRGB());
+		if(mod.isEnabled()){
+			RenderUtils.drawVerticalLine(parent.getX(), parent.getY() + this.offset - 1, parent.getY() + this.offset + 12, ui.rainbow(300) ,ui.rainbow(300));
+		}
 		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.mod.getName(), (parent.getX() + 5), (parent.getY() + offset + 2), this.mod.isEnabled() ? ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "Rainbow").getValBoolean() ? ui.rainbow(300) : new Color(0x36D003).hashCode() : 0xFFFFFF); //0x999999
 		if(this.subcomponents.size() >= 2) {
-			Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.open ? "-" : "+", (parent.getX()+parent.getWidth()-10), (parent.getY() + offset + 2), -1);
+			Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.open ? "..." : "...", (parent.getX()+parent.getWidth()-10), (parent.getY() + offset + 2), -1);
 		}
 		if(this.open) {
 			if(!this.subcomponents.isEmpty()) {

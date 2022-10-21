@@ -1,9 +1,6 @@
 package com.example.examplemod;
 
-import com.example.examplemod.Module.CLIENT.Chat;
-import com.example.examplemod.Module.CLIENT.ClickGUI;
-import com.example.examplemod.Module.CLIENT.PVPBot;
-import com.example.examplemod.Module.CLIENT.Panic;
+import com.example.examplemod.Module.CLIENT.*;
 import com.example.examplemod.Module.COMBAT.*;
 import com.example.examplemod.Module.EXPLOIT.HackerDetector;
 import com.example.examplemod.Module.HUD.HackList;
@@ -11,11 +8,8 @@ import com.example.examplemod.Module.HUD.Particleeesss;
 import com.example.examplemod.Module.HUD.Watermark;
 import com.example.examplemod.Module.MOVEMENT.*;
 import com.example.examplemod.Module.Module;
-import com.example.examplemod.Module.PLAYER.AntiAim;
-import com.example.examplemod.Module.PLAYER.BlockReach;
+import com.example.examplemod.Module.PLAYER.*;
 import com.example.examplemod.Module.EXPLOIT.FakeCreative;
-import com.example.examplemod.Module.PLAYER.MiddleClickPearl;
-import com.example.examplemod.Module.PLAYER.Suicide;
 import com.example.examplemod.Module.RENDER.*;
 import font.FontUtils;
 import net.minecraft.client.Minecraft;
@@ -85,6 +79,17 @@ public class Client {
         modules.add(new HackList());
         modules.add(new Particleeesss());
         modules.add(new BulletTracer());
+        modules.add(new NoSlowdown());
+        modules.add(new TargetStrafe());
+        modules.add(new AutoTotem());
+        modules.add(new FreeCam());
+        modules.add(new Notification());
+        modules.add(new BowSpam());
+        modules.add(new AutoPotion());
+        modules.add(new Derp());
+        modules.add(new GodMode());
+        modules.add(new NoPush());
+
 
         clickGuiManager = new ClickGuiManager();
 
@@ -99,6 +104,15 @@ public class Client {
             }
         }
         return mods;
+    }
+
+    public static CopyOnWriteArrayList<Module> getModuleList() {
+        return modules;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Module> T getModule(Class<T> clazz) {
+        return (T) modules.stream().filter(mod -> mod.getClass() == clazz).findFirst().orElse(null);
     }
 
     public static void keyPress(int key) {

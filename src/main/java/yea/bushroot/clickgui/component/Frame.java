@@ -11,6 +11,7 @@ import com.example.examplemod.Utils.RenderUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.*;
+import yea.bushroot.clickgui.Effect;
 import yea.bushroot.clickgui.component.components.Button;
 
 public class Frame {
@@ -74,7 +75,6 @@ public class Frame {
 		Gui.drawRect(this.x, this.y-1, this.x + this.width, this.y, ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "Rainbow").getValBoolean() ? ui.rainbow(300) : 0xFF222222);
 		Gui.drawRect(this.x, this.y, this.x + this.width, this.y + 12, ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "Rainbow").getValBoolean() ? ui.rainbow(300) : 0xFF222222);
 		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.category.name(), this.x + 5, this.y + 2, -1);
-
 		if(this.open) {
 			if(!this.components.isEmpty()) {
 				for(Component component : components) {

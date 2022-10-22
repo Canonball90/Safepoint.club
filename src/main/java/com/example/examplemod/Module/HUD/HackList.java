@@ -74,7 +74,7 @@ public class HackList extends Module {
                 }
         }
     }
-
+//0.735f
 
     public static int rainbow(int n) {
         double d = Math.ceil((double)(System.currentTimeMillis() + (long)n) / 10.0);

@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Client {
-    public static String name = "Safepoint.club 1.12.2 | User: " + Minecraft.getMinecraft().getSession().getUsername();
+    public static String name = "Safepoint.club 0.1 | User: " + Minecraft.getMinecraft().getSession().getUsername();
     public static String cName = "Safepoint.club 0.1";
     public static CopyOnWriteArrayList<Module> modules = new CopyOnWriteArrayList<Module>();
 

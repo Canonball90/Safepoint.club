@@ -38,19 +38,15 @@ public class ClickGuiManager extends GuiScreen {
 		
 	}
 
-	private final ResourceLocation background = new ResourceLocation("borgor.png");
 	private final ResourceLocation neko = new ResourceLocation("uwu.png");
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
-		RenderUtils.drawGradient(0, 0, width, height, new Color(255, 255, 255, 26).getRGB(), new Color(18, 2, 243, 160).getRGB());
+		RenderUtils.drawGradient(0, 0, width, height, new Color(211, 0, 255, 128).getRGB(), new Color(255, 0, 58, 128).getRGB());
 
 		this.particleSystem.tick(20);
 		this.particleSystem.render();
-
-		mc.renderEngine.bindTexture(background);
-		drawScaledCustomSizeModalRect(5, Minecraft.getMinecraft().currentScreen.height - 50, 0, 0, 50, 50, 50, 50, 50, 50);
 
 		int divi=4;
 		mc.renderEngine.bindTexture(neko);

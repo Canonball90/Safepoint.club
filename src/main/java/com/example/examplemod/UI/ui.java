@@ -38,14 +38,6 @@ public class ui {
 
                     int posY = 10;
 
-
-
-                /*
-                fr.drawString("Tutorial§aClient §fB§a1.0", 5, 5, -1);
-                fr.drawString("§fFPS: §a" + Minecraft.getDebugFPS(), 5, 15, -1);
-
-                 */
-
                     ArrayList<Module> enabledMods = new ArrayList<>();
 
                     for (Module module : Client.modules) {

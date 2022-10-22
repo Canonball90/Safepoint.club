@@ -4,6 +4,9 @@ import java.awt.Color;
 
 import com.example.examplemod.ExampleMod;
 import com.example.examplemod.UI.ui;
+import com.example.examplemod.Utils.animation.Animation;
+import com.example.examplemod.Utils.animation.ColourAnimation;
+import com.example.examplemod.Utils.animation.Easing;
 import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -28,6 +31,9 @@ public class Checkbox extends Component {
 		this.offset = offset;
 	}
 
+	ColourAnimation state1 = new ColourAnimation(Color.GREEN, Color.RED, 200f, false, Easing.LINEAR);
+	ColourAnimation state = new ColourAnimation(Color.RED, Color.GREEN, 200f, false, Easing.LINEAR);
+
 	@Override
 	public void renderComponent() {
 		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, this.hovered ? 0xFF222222 : 0xFF111111);
@@ -36,9 +42,15 @@ public class Checkbox extends Component {
 		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.op.getName(), (parent.parent.getX() + 10 + 4) * 2 + 5, (parent.parent.getY() + offset + 2) * 2 + 4, -1);
 		GL11.glPopMatrix();
 		if (this.op.getValBoolean()) {
-			Gui.drawRect(parent.parent.getX() + 4 + 4, parent.parent.getY() + offset + 4, parent.parent.getX() + 8 + 4, parent.parent.getY() + offset + 8, ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "Rainbow").getValBoolean() ? ui.rainbow(300) : new Color(0x36D003).hashCode());
+			Color colour = state.getColour();
+			state.setState(true);
+			state1.setState(false);
+			Gui.drawRect(parent.parent.getX() + 4 + 4, parent.parent.getY() + offset + 4, parent.parent.getX() + 8 + 4, parent.parent.getY() + offset + 8, ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "Rainbow").getValBoolean() ? ui.rainbow(300) : new Color(colour.getRed(), colour.getGreen(), colour.getBlue()).getRGB());
 		} else {
-			Gui.drawRect(parent.parent.getX() + 4 + 4, parent.parent.getY() + offset + 4, parent.parent.getX() + 8 + 4, parent.parent.getY() + offset + 8, new Color(0xffff2222).hashCode());
+			Color colour = state1.getColour();
+			state.setState(false);
+			state1.setState(true);
+			Gui.drawRect(parent.parent.getX() + 4 + 4, parent.parent.getY() + offset + 4, parent.parent.getX() + 8 + 4, parent.parent.getY() + offset + 8, new Color(colour.getRed(), colour.getGreen(), colour.getBlue()).getRGB());
 //			Gui.drawRect(parent.parent.getX() + 5 + 4, parent.parent.getY() + offset + 5, parent.parent.getX() + 7 + 4, parent.parent.getY() + offset + 7, new Color(0xffff2222).hashCode());
 		}
 	}

@@ -39,6 +39,7 @@ public class ClickGuiManager extends GuiScreen {
 	}
 
 	private final ResourceLocation background = new ResourceLocation("borgor.png");
+	private final ResourceLocation neko = new ResourceLocation("uwu.png");
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -50,6 +51,10 @@ public class ClickGuiManager extends GuiScreen {
 
 		mc.renderEngine.bindTexture(background);
 		drawScaledCustomSizeModalRect(5, Minecraft.getMinecraft().currentScreen.height - 50, 0, 0, 50, 50, 50, 50, 50, 50);
+
+		int divi=4;
+		mc.renderEngine.bindTexture(neko);
+		drawScaledCustomSizeModalRect(Minecraft.getMinecraft().currentScreen.width-(640/divi), Minecraft.getMinecraft().currentScreen.height - (1024/divi), 0, 0, 640/divi, 1024/divi, 640/divi, 1024/divi, 640/divi, 1024/divi);
 
 		for(Frame frame : frames) {
 			frame.renderFrame(this.fontRenderer);

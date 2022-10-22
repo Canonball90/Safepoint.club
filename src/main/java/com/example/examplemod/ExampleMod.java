@@ -51,7 +51,7 @@ public class ExampleMod
         MinecraftForge.EVENT_BUS.register(new key());
         MinecraftForge.EVENT_BUS.register(new ui());
         MinecraftForge.EVENT_BUS.register(new onGuiOpenEvent());
-        logger.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        logger.info("DIRTY BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
 
     public static void setSession(Session s) {

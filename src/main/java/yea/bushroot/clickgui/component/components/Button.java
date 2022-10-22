@@ -85,6 +85,9 @@ public class Button extends yea.bushroot.clickgui.component.Component {
 				}
 			}
 		}
+		if (parent.components.indexOf(this) == parent.components.size() - 1) {
+			RenderUtils.drawHorizontalLine(parent.getX(), parent.getX() + parent.getWidth() - 1, parent.getY() + this.offset + 12,ui.rainbow(300));
+		}
 	}
 
 	@Override

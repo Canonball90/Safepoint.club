@@ -89,7 +89,9 @@ public class Client {
         modules.add(new Derp());
         modules.add(new GodMode());
         modules.add(new NoPush());
-
+        modules.add(new FastEat());
+        modules.add(new DamageFly());
+        modules.add(new LongJump());
 
         clickGuiManager = new ClickGuiManager();
 

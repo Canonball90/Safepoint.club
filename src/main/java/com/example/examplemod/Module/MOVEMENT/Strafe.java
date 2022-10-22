@@ -1,9 +1,11 @@
 package com.example.examplemod.Module.MOVEMENT;
 
+import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import yea.bushroot.clickgui.Setting;
 
 public class Strafe
         extends Module {
@@ -24,6 +26,7 @@ public class Strafe
 
     public Strafe() {
         super("Strafe", 0,Category.MOVEMENT);
+        ExampleMod.instance.settingsManager.rSetting(new Setting("Jump",this, true));
     }
 
     public static float getSpeed() {
@@ -50,13 +53,15 @@ public class Strafe
         return Math.toRadians(f);
     }
 
+    //public static boolean jump = ExampleMod.instance.settingsManager.getSettingByName(this.name, "Jump").getValBoolean();
+
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent playerTickEvent) {
         strafe();
     }
 
     public static boolean isMoving() {
-        if(mc.player.onGround && mc.player.moveForward != 0.0f || mc.player.moveStrafing != 0.0f) {
+        if(mc.player.onGround) {
             mc.player.jump();
         }
         return mc.player != null && (mc.player.movementInput.moveForward != 0.0f || mc.player.movementInput.moveStrafe != 0.0f);

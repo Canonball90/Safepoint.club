@@ -3,6 +3,7 @@ package com.example.examplemod.Module.HUD;
 import com.example.examplemod.Client;
 import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.Module;
+import com.example.examplemod.UI.ui;
 import font.FontUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -54,7 +55,6 @@ public class Watermark extends Module {
                 int y = 10;
                 final int[] counter = {1};
 
-
                 Minecraft mc = Minecraft.getMinecraft();
                 FontRenderer fr = mc.fontRenderer;
                 ScaledResolution sr = new ScaledResolution(mc);
@@ -89,9 +89,10 @@ public class Watermark extends Module {
         }
     }
 
-    public static int rainbow(int delay){
-        double rainbowState =  Math.ceil((System.currentTimeMillis() + delay) / 20.0);
-        rainbowState %= 360;
-        return Color.getHSBColor((float) (rainbowState / 360.0f), 0.5f, 1f).getRGB();
+
+    public static int rainbow(int n) {
+        double d = Math.ceil((double)(System.currentTimeMillis() + (long)n) / 10.0);
+        return Color.getHSBColor((float)((d %= -360.0) / -360.0), 0.735f, 1.0f).getRGB();
     }
+
 }

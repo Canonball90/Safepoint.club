@@ -37,10 +37,13 @@ public class Checkbox extends Component {
 	@Override
 	public void renderComponent() {
 		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + (parent.parent.getWidth() * 1), parent.parent.getY() + offset + 12, this.hovered ? 0xFF222222 : 0xFF111111);
-		GL11.glPushMatrix();
-		GL11.glScalef(0.5f, 0.5f, 0.5f);
-		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.op.getName(), (parent.parent.getX() + 10 + 4) * 2 + 5, (parent.parent.getY() + offset + 2) * 2 + 4, -1);
-		GL11.glPopMatrix();
+
+//		GL11.glPushMatrix();
+//		GL11.glScalef(0.5f, 0.5f, 0.5f);
+//		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.op.getName(), (parent.parent.getX() + 10 + 4) * 2 + 5, (parent.parent.getY() + offset + 2) * 2 + 4, -1);
+		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.op.getName(), parent.parent.getX() + 18, parent.parent.getY() + offset + 2, 0xfff2f2f2);
+//		GL11.glPopMatrix();
+
 		if (this.op.getValBoolean()) {
 			Color colour = state.getColour();
 			state.setState(true);
@@ -75,7 +78,7 @@ public class Checkbox extends Component {
 	}
 	
 	public boolean isMouseOnButton(int x, int y) {
-		if(x > this.x && x < this.x + 88 && y > this.y && y < this.y + 12) {
+		if(x > this.x && x < this.x + parent.parent.getWidth() && y > this.y && y < this.y + 12) {
 			return true;
 		}
 		return false;

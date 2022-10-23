@@ -33,19 +33,30 @@ public class Slider extends Component {
 		this.y = button.parent.getY() + button.offset;
 		this.offset = offset;
 	}
-	
+	int eee=14;
+	int eeeY=3;
 	@Override
 	public void renderComponent() {
-		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth(), parent.parent.getY() + offset + 12, 0xFF111111);
-		final int drag = (int)(this.set.getValDouble() / this.set.getMax() * this.parent.parent.getWidth());
+		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX() + parent.parent.getWidth(), parent.parent.getY() + offset + 12, this.hovered ? 0xFF222222 : 0xFF111111);
+		final int drag = (int)(this.set.getValDouble() / this.set.getMax() * (this.parent.parent.getWidth()));
 		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX(), parent.parent.getY() + offset + 12, 0xFF111111);
-		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset + 8, parent.parent.getX() + 88, parent.parent.getY() + offset + 12, Color.GRAY.darker().darker().darker().getRGB());
-		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset + 8, parent.parent.getX() + (int) renderWidth, parent.parent.getY() + offset + 12, ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "Rainbow").getValBoolean() ? ui.rainbow(300) : new Color(0x36D003).hashCode());
-		GL11.glPushMatrix();
-		GL11.glScalef(0.5f,0.5f, 0.5f);
-		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.set.getName() + ": " + this.set.getValDouble() , (parent.parent.getX()* 2 + 15), (parent.parent.getY() + offset - 1) * 2 + 5, -1);
+		Gui.drawRect(
+				parent.parent.getX()+eee,
+				parent.parent.getY() + offset+eeeY,
+				parent.parent.getX() + 88+eee,
+				parent.parent.getY() + offset + 6+eeeY,
+				Color.GRAY.darker().darker().darker().getRGB());
 
-		GL11.glPopMatrix();
+		Gui.drawRect(parent.parent.getX()+eee,
+				parent.parent.getY() + offset+eeeY,
+				parent.parent.getX() + (int) renderWidth+eee,
+				parent.parent.getY() + offset + 6+eeeY,
+				ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "Rainbow").getValBoolean() ? ui.rainbow(300) : new Color(0x36D003).hashCode());
+
+//		GL11.glPushMatrix();
+//		GL11.glScalef(0.7f,0.7f, 0.7f);
+		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.set.getName() + ": " + this.set.getValDouble() , parent.parent.getX() + 18, parent.parent.getY() + offset + 2, 0xfff2f2f2);
+//		GL11.glPopMatrix();
 	}
 	
 	@Override
@@ -88,10 +99,10 @@ public class Slider extends Component {
 	
 	@Override
 	public void mouseClicked(int mouseX, int mouseY, int button) {
-		if(isMouseOnButtonD(mouseX, mouseY) && button == 0 && this.parent.open) {
+		if(isMouseOnButtonD(mouseX+eee, mouseY) && button == 0 && this.parent.open) {
 			dragging = true;
 		}
-		if(isMouseOnButtonI(mouseX, mouseY) && button == 0 && this.parent.open) {
+		if(isMouseOnButtonI(mouseX+eee, mouseY) && button == 0 && this.parent.open) {
 			dragging = true;
 		}
 	}
@@ -102,16 +113,10 @@ public class Slider extends Component {
 	}
 	
 	public boolean isMouseOnButtonD(int x, int y) {
-		if(x > this.x && x < this.x + (parent.parent.getWidth() / 2 + 1) && y > this.y && y < this.y + 12) {
-			return true;
-		}
-		return false;
+		return x > this.x && x < this.x + (parent.parent.getWidth() / 2 + 1) && y > this.y && y < this.y + 12;
 	}
 	
 	public boolean isMouseOnButtonI(int x, int y) {
-		if(x > this.x + parent.parent.getWidth() / 2 && x < this.x + parent.parent.getWidth() && y > this.y && y < this.y + 12) {
-			return true;
-		}
-		return false;
+		return x > this.x + parent.parent.getWidth() / 2 && x < this.x + parent.parent.getWidth() && y > this.y && y < this.y + 12;
 	}
 }

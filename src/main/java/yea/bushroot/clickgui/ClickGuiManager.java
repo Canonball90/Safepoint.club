@@ -40,6 +40,7 @@ public class ClickGuiManager extends GuiScreen {
 	}
 
 	private final ResourceLocation neko = new ResourceLocation("uwu.png");
+	private final ResourceLocation neku = new ResourceLocation("owo.png");
 	
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
@@ -49,10 +50,10 @@ public class ClickGuiManager extends GuiScreen {
 		this.particleSystem.tick(20);
 		this.particleSystem.render();
 
-		int divi=4;
+		int divi=6;
 		if(ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "uwu").getValBoolean()) {
-			mc.renderEngine.bindTexture(neko);
-			drawScaledCustomSizeModalRect(Minecraft.getMinecraft().currentScreen.width - (640 / divi), Minecraft.getMinecraft().currentScreen.height - (1024 / divi), 0, 0, 640 / divi, 1024 / divi, 640 / divi, 1024 / divi, 640 / divi, 1024 / divi);
+			mc.renderEngine.bindTexture(neku);
+			drawScaledCustomSizeModalRect(Minecraft.getMinecraft().currentScreen.width - (1189 / divi), Minecraft.getMinecraft().currentScreen.height - (1620 / divi), 0, 0, 1189 / divi, 1620 / divi, 1189 / divi, 1620 / divi, 1189 / divi, 1620 / divi);
 		}
 		for(Frame frame : frames) {
 			frame.renderFrame(this.fontRenderer);

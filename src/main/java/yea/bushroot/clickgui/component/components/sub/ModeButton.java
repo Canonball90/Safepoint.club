@@ -43,7 +43,7 @@ public class ModeButton extends Component {
 
 //		GL11.glPushMatrix();
 //		GL11.glScalef(0.5f,0.5f, 0.5f);
-		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(set.getTitle()+": " + set.getOptions().get(modeIndex), parent.parent.getX() + 18, parent.parent.getY() + offset + 2, 0xfff2f2f2);
+		Minecraft.getMinecraft().fontRenderer.drawString(set.getTitle()+": " + set.getOptions().get(modeIndex), parent.parent.getX() + 8, parent.parent.getY() + offset + 2, 0xff777777);
 //		GL11.glPopMatrix();
 	}
 	

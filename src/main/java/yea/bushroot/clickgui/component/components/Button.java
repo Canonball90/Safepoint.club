@@ -83,7 +83,7 @@ public class Button extends yea.bushroot.clickgui.component.Component {
 		}
 		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.mod.getName(), (parent.getX() + 5), (parent.getY() + offset + 2), this.mod.isEnabled() ? ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "Rainbow").getValBoolean() ? ui.rainbow(300) : new Color(0xffe838bf).hashCode() : 0xFFFFFF); //0x999999
 		if(this.subcomponents.size() >= 2) {
-			Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.open ? "[ ]" : "[]", (parent.getX()+parent.getWidth()-12)-(this.open?2:0), (parent.getY() + offset), -1);
+			Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.open ? "[ ]" : "[]", (parent.getX()+parent.getWidth()-12)-(this.open?2:0), (parent.getY() + offset)+2, -1);
 		}
 		if(this.open) {
 			if(!this.subcomponents.isEmpty()) {

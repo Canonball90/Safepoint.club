@@ -92,6 +92,7 @@ public class Client {
         modules.add(new FastEat());
         modules.add(new DamageFly());
         modules.add(new LongJump());
+        modules.add(new AutoCrystal());
 
         clickGuiManager = new ClickGuiManager();
 

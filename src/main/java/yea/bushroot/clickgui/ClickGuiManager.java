@@ -4,6 +4,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.Module;
 import com.example.examplemod.Utils.RenderUtils;
 import com.example.examplemod.Utils.particle.ParticleSystem;
@@ -49,9 +50,10 @@ public class ClickGuiManager extends GuiScreen {
 		this.particleSystem.render();
 
 		int divi=4;
-		mc.renderEngine.bindTexture(neko);
-		drawScaledCustomSizeModalRect(Minecraft.getMinecraft().currentScreen.width-(640/divi), Minecraft.getMinecraft().currentScreen.height - (1024/divi), 0, 0, 640/divi, 1024/divi, 640/divi, 1024/divi, 640/divi, 1024/divi);
-
+		if(ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "uwu").getValBoolean()) {
+			mc.renderEngine.bindTexture(neko);
+			drawScaledCustomSizeModalRect(Minecraft.getMinecraft().currentScreen.width - (640 / divi), Minecraft.getMinecraft().currentScreen.height - (1024 / divi), 0, 0, 640 / divi, 1024 / divi, 640 / divi, 1024 / divi, 640 / divi, 1024 / divi);
+		}
 		for(Frame frame : frames) {
 			frame.renderFrame(this.fontRenderer);
 			frame.updatePosition(mouseX, mouseY);

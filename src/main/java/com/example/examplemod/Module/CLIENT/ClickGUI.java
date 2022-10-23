@@ -17,7 +17,7 @@ public class ClickGUI extends Module {
         options.add("Old");
 
         ExampleMod.instance.settingsManager.rSetting(new Setting("Design", this, options, "Theme"));
-
+        ExampleMod.instance.settingsManager.rSetting(new Setting("uwu", this, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("Rainbow", this, false));
     }
 

@@ -61,10 +61,10 @@ public class HackList extends Module {
                 for (Module module : enabledMods) {
                     if(leftborder) {
                         Gui.drawRect(sr.getScaledWidth(), y, sr.getScaledWidth() - 2,
-                                y + 9, rainbow(counter[0] * 300));                     //2
+                                y + 10, rainbow(counter[0] * 300));                     //2
                     }
                     if(rightborder) {
-                        Gui.drawRect(sr.getScaledWidth() - fr.getStringWidth(module.name) - 8, y, sr.getScaledWidth() - fr.getStringWidth(module.name) - 6, y + 10, rainbow(counter[0] * 300));
+                        Gui.drawRect(sr.getScaledWidth() - fr.getStringWidth(module.name) - 10, y, sr.getScaledWidth() - fr.getStringWidth(module.name) - 6, y + 10, rainbow(counter[0] * 300));
                     }
                     fr.drawString(module.name, sr.getScaledWidth() - 4 - fr.getStringWidth(module.name),
                             y, rainbow(counter[0] * 300));

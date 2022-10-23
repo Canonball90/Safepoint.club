@@ -2,6 +2,7 @@ package com.example.examplemod.Module.RENDER;
 
 import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.Module;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.input.Keyboard;
@@ -18,9 +19,11 @@ public class ViewModel extends Module {
 
     @SubscribeEvent
     public void onRender(RenderSpecificHandEvent e) {
-        int x = (int)ExampleMod.instance.settingsManager.getSettingByName(this.name, "X").getValDouble();
-        int y = (int)ExampleMod.instance.settingsManager.getSettingByName(this.name, "Y").getValDouble();
-        int z = (int)ExampleMod.instance.settingsManager.getSettingByName(this.name, "Z").getValDouble();
-        GL11.glTranslated(x, y, z);
+        if(e.getHand() == EnumHand.MAIN_HAND) {
+            int x = (int) ExampleMod.instance.settingsManager.getSettingByName(this.name, "X").getValDouble();
+            int y = (int) ExampleMod.instance.settingsManager.getSettingByName(this.name, "Y").getValDouble();
+            int z = (int) ExampleMod.instance.settingsManager.getSettingByName(this.name, "Z").getValDouble();
+            GL11.glTranslated(x, y, z);
+        }
     }
 }

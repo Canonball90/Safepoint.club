@@ -61,8 +61,10 @@ public class Strafe
     }
 
     public static boolean isMoving() {
-        if(mc.player.onGround) {
-            mc.player.jump();
+        if(ExampleMod.instance.settingsManager.getSettingByName("Strafe", "Jump").getValBoolean()) {
+            if (mc.player.onGround) {
+                mc.player.jump();
+            }
         }
         return mc.player != null && (mc.player.movementInput.moveForward != 0.0f || mc.player.movementInput.moveStrafe != 0.0f);
     }

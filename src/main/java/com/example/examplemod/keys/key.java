@@ -3,7 +3,7 @@ package com.example.examplemod.keys;
 import com.example.examplemod.Client;
 import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.CLIENT.Panic;
-import me.bushroot.clickgui.ClickGuiScreen;
+import leon.skeetgui.gui.SkeetGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -19,7 +19,7 @@ public class key {
                     Minecraft.getMinecraft().displayGuiScreen(ExampleMod.instance.clickGui);
                 }
                 if (Keyboard.getEventKey() == Keyboard.KEY_RCONTROL && !Panic.isPanic) {
-                    Minecraft.getMinecraft().displayGuiScreen(new ClickGuiScreen());
+                    Minecraft.getMinecraft().displayGuiScreen(new SkeetGUI());
                 }
             }
         }

@@ -2,7 +2,6 @@ package com.example.examplemod.Module.CLIENT;
 
 import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.Module;
-import me.bushroot.clickgui.ClickGuiScreen;
 import org.lwjgl.input.Keyboard;
 import yea.bushroot.clickgui.Setting;
 
@@ -23,11 +22,8 @@ public class ClickGUI extends Module {
 
     @Override
     public void onEnable() {
-        if(ExampleMod.instance.settingsManager.getSettingByName(this.name, "Design").getValString().equalsIgnoreCase("Old")) {
-            mc.displayGuiScreen(new ClickGuiScreen());
-        } else {
+
             mc.displayGuiScreen(ExampleMod.instance.clickGui);
-        }
         super.onEnable();
     }
 }

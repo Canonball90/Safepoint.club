@@ -1,118 +1,113 @@
 package com.example.examplemod.Module.COMBAT;
 
-import java.util.ArrayList;
-import java.util.Random;
-
+import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.Module;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemSplashPotion;
+import com.example.examplemod.Utils.TimerUtil;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.play.client.CPacketHeldItemChange;
+import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.client.CPacketPlayerTryUseItem;
 import net.minecraft.potion.Potion;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.common.Optional;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import org.lwjgl.input.Keyboard;
+import yea.bushroot.clickgui.Setting;
 
-public class AutoPotion
-        extends Module {
-    private long curTime;
-    private long delay = 20000L;
-    private ArrayList slots = new ArrayList();
-    private Random random;
-    static Minecraft mc = Minecraft.getMinecraft();
+import java.util.Objects;
 
-    public boolean isUnUsed(int n) {
-        n = 0;
-        for (Object n2w : this.slots) {
-            Integer n2 = (Integer) n2w;
-            if (n != n2) continue;
-            return false;
-        }
-        return true;
-    }
-
-    public void setDownPitch() {
-        float f = AutoPotion.mc.player.rotationYaw;
-        float f2 = 90.0f;
-        if (f >= 0.0f) {
-            if (AutoPotion.mc.player.rotationYaw < f) {
-                while (AutoPotion.mc.player.rotationYaw < f) {
-                    AutoPotion.mc.player.rotationYaw = (float)((double)AutoPotion.mc.player.rotationYaw + (double)this.random.nextInt(99) * 1.0E-4);
-                }
-            } else {
-                while (AutoPotion.mc.player.rotationYaw > f) {
-                    AutoPotion.mc.player.rotationYaw = (float)((double)AutoPotion.mc.player.rotationYaw - (double)this.random.nextInt(99) * 1.0E-4);
-                }
-            }
-        } else if (AutoPotion.mc.player.rotationYaw < f) {
-            while (AutoPotion.mc.player.rotationYaw < f) {
-                AutoPotion.mc.player.rotationYaw = (float)((double)AutoPotion.mc.player.rotationYaw + (double)this.random.nextInt(99) * 1.0E-4);
-            }
-        } else {
-            while (AutoPotion.mc.player.rotationYaw > f) {
-                AutoPotion.mc.player.rotationYaw = (float)((double)AutoPotion.mc.player.rotationYaw - (double)this.random.nextInt(99) * 1.0E-4);
-            }
-        }
-        Float.compare(f2, 0.0f);
-        if (AutoPotion.mc.player.rotationPitch < f2) {
-            while (AutoPotion.mc.player.rotationPitch < f2) {
-                AutoPotion.mc.player.rotationPitch = (float)((double)AutoPotion.mc.player.rotationPitch + (double)this.random.nextInt(99) * 1.0E-4);
-            }
-        } else {
-            while (AutoPotion.mc.player.rotationPitch > f2) {
-                AutoPotion.mc.player.rotationPitch = (float)((double)AutoPotion.mc.player.rotationPitch - (double)this.random.nextInt(99) * 1.0E-4);
-            }
-        }
-    }
-
+public class AutoPotion extends Module {
     public AutoPotion() {
-        super("AutoPotion", 0, Module.Category.COMBAT);
-        this.curTime = System.currentTimeMillis();
-        this.random = new Random();
+        super("AutoPotion", Keyboard.KEY_NONE, Category.COMBAT);
+
+        ExampleMod.instance.settingsManager.rSetting(new Setting("Delay", this, 150, 0, 900, true));
     }
 
     @SubscribeEvent
-    public void onPlayerTick(TickEvent.PlayerTickEvent playerTickEvent) {
-        NonNullList nonNullList = Minecraft.getMinecraft().player.inventory.mainInventory;
-        if (!(AutoPotion.mc.player.isPotionActive(Potion.getPotionById((int)1)) && AutoPotion.mc.player.isPotionActive(Potion.getPotionById((int)12)) && AutoPotion.mc.player.isPotionActive(Potion.getPotionById((int)5)))) {
+    public void onUpdate(TickEvent.PlayerTickEvent e) {
+        if (!mc.player.onGround) {
             return;
         }
-        if (!AutoPotion.mc.player.isPotionActive(Potion.getPotionById((int)1))) {
-            int n = 0;
-            while (true) {
-                if (((ItemStack)nonNullList.get(n)).getItem() instanceof ItemSplashPotion && this.isUnUsed(n)) {
-                    this.slots.add(n);
-                    return;
+        if (!mc.player.isPotionActive((Objects.requireNonNull(Potion.getPotionById(5)))) && isPotionOnHotBar(Potions.STRENGTH)) {
+            throwPot(Potions.STRENGTH);
+        } else if (!mc.player.isPotionActive((Objects.requireNonNull(Potion.getPotionById(1)))) && isPotionOnHotBar(Potions.SPEED)) {
+            throwPot(Potions.SPEED);
+        } else if (!mc.player.isPotionActive((Objects.requireNonNull(Potion.getPotionById(12)))) && isPotionOnHotBar(Potions.FIRERES)) {
+            throwPot(Potions.FIRERES);
+        }
+    }
+
+    public void throwPot(Potions potion) {
+        double delay = ExampleMod.instance.settingsManager.getSettingByName(this.name, "Delay").getValDouble();
+
+        int slot = getPotionSlot(potion);
+        if (TimerUtil.hasReached((float) delay)) {
+            mc.player.connection.sendPacket(new CPacketHeldItemChange(slot));
+            mc.playerController.updateController();
+            mc.player.connection.sendPacket(new CPacketPlayer.Rotation(mc.player.rotationYaw, 90, mc.player.onGround));
+            mc.playerController.updateController();
+            mc.player.connection.sendPacket(new CPacketPlayerTryUseItem(EnumHand.MAIN_HAND));
+            mc.playerController.updateController();
+            mc.player.connection.sendPacket(new CPacketHeldItemChange(mc.player.inventory.currentItem));
+            TimerUtil.reset1();
+        }
+    }
+
+    public int getPotionSlot(Potions potion) {
+        for (int i = 0; i < 9; ++i) {
+            if (this.isStackPotion(mc.player.inventory.getStackInSlot(i), potion))
+                return i;
+        }
+        return -1;
+    }
+
+    public boolean isPotionOnHotBar(Potions potions) {
+        for (int i = 0; i < 9; ++i) {
+            if (isStackPotion(mc.player.inventory.getStackInSlot(i), potions)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isStackPotion(ItemStack stack, Potions potion) {
+        if (stack == null)
+            return false;
+
+        Item item = stack.getItem();
+
+        if (item == Items.SPLASH_POTION) {
+            int id = 5;
+
+            switch (potion) {
+                case STRENGTH: {
+                    id = 5;
+                    break;
                 }
-                ++n;
-            }
-        }
-        if (!AutoPotion.mc.player.isPotionActive(Potion.getPotionById((int)12))) {
-            int n = 0;
-            while (true) {
-                if (((ItemStack)nonNullList.get(n)).getItem() instanceof ItemSplashPotion && this.isUnUsed(n)) {
-                    this.slots.add(n);
-                    return;
+                case SPEED: {
+                    id = 1;
+                    break;
                 }
-                ++n;
-            }
-        }
-        if (!AutoPotion.mc.player.isPotionActive(Potion.getPotionById((int)5))) {
-            int n = 0;
-            while (true) {
-                if (((ItemStack)nonNullList.get(n)).getItem() instanceof ItemSplashPotion && this.isUnUsed(n)) {
-                    this.slots.add(n);
-                    return;
+                case FIRERES: {
+                    id = 12;
+                    break;
                 }
-                ++n;
+            }
+
+            for (PotionEffect effect : PotionUtils.getEffectsFromStack(stack)) {
+                if (effect.getPotion() == Potion.getPotionById(id)) {
+                    return true;
+                }
             }
         }
-        int n = 0;
-        while (true) {
-            if (((ItemStack)nonNullList.get(n)).getItem() instanceof ItemSplashPotion) {
-                this.slots.add(n);
-            }
-            ++n;
-        }
+        return false;
+    }
+
+    public enum Potions {
+        STRENGTH, SPEED, FIRERES
     }
 }

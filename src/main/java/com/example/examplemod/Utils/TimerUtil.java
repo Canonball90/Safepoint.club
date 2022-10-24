@@ -38,4 +38,18 @@ public class TimerUtil {
         return time / 1000000L;
     }
 
+    private static long ms = getCurrentMS();
+
+    private static long getCurrentMS() {
+        return System.currentTimeMillis();
+    }
+
+    public static boolean hasReached(float milliseconds) {
+        return getCurrentMS() - ms > milliseconds;
+    }
+
+    public static void reset1() {
+        ms = getCurrentMS();
+    }
+
 }

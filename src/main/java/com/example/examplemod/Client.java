@@ -93,6 +93,23 @@ public class Client {
         modules.add(new DamageFly());
         modules.add(new LongJump());
         modules.add(new AutoCrystal());
+        modules.add(new Criticals());
+        modules.add(new JumpCircle());
+        modules.add(new Trails());
+        modules.add(new ChinaHat());
+        modules.add(new AutoShieldDestroy());
+        modules.add(new SuperBow());
+        modules.add(new Trajectories());
+        modules.add(new SkyColor());
+        modules.add(new AttackEffect());
+        modules.add(new BlockObject());
+        modules.add(new AutoGapple());
+        modules.add(new ChestStealer());
+        modules.add(new AutoRespawn());
+        modules.add(new EntitySpeed());
+        modules.add(new PigPOV());
+        modules.add(new NoFall());
+        modules.add(new HitAnimation());
 
         clickGuiManager = new ClickGuiManager();
 

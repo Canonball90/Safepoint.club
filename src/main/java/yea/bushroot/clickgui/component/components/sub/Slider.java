@@ -33,7 +33,7 @@ public class Slider extends Component {
 		this.y = button.parent.getY() + button.offset;
 		this.offset = offset;
 	}
-	int eee=0;
+	int eee=14;
 	int eeeY=3;
 	@Override
 	public void renderComponent() {
@@ -42,20 +42,20 @@ public class Slider extends Component {
 		Gui.drawRect(parent.parent.getX(), parent.parent.getY() + offset, parent.parent.getX(), parent.parent.getY() + offset + 12, 0xFF111111);
 		Gui.drawRect(
 				parent.parent.getX()+eee,
-				parent.parent.getY() + offset+eeeY-1,
+				parent.parent.getY() + offset+eeeY,
 				parent.parent.getX() + 88+eee,
-				parent.parent.getY() + offset + 7+eeeY,
+				parent.parent.getY() + offset + 6+eeeY,
 				Color.GRAY.darker().darker().darker().getRGB());
 
 		Gui.drawRect(parent.parent.getX()+eee,
-				parent.parent.getY() + offset+eeeY-1,
+				parent.parent.getY() + offset+eeeY,
 				parent.parent.getX() + (int) renderWidth+eee,
-				parent.parent.getY() + offset + 7+eeeY,
-				ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "Rainbow").getValBoolean() ? ui.rainbow(300) : new Color(0xffe838bf).hashCode());
+				parent.parent.getY() + offset + 6+eeeY,
+				ExampleMod.instance.settingsManager.getSettingByName("ClickGUI", "Rainbow").getValBoolean() ? ui.rainbow(300) : new Color(0x36D003).hashCode());
 
 //		GL11.glPushMatrix();
 //		GL11.glScalef(0.7f,0.7f, 0.7f);
-		Minecraft.getMinecraft().fontRenderer.drawString(this.set.getName() + ": " + this.set.getValDouble() , parent.parent.getX() + 8, parent.parent.getY() + offset+2, 0xff777777);
+		Minecraft.getMinecraft().fontRenderer.drawStringWithShadow(this.set.getName() + ": " + this.set.getValDouble() , parent.parent.getX() + 18, parent.parent.getY() + offset + 2, 0xfff2f2f2);
 //		GL11.glPopMatrix();
 	}
 	

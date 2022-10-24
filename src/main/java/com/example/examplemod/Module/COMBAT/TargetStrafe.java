@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.Module;
 import com.example.examplemod.Utils.RotationUtils;
 import com.example.examplemod.Utils.TimerUtil;
@@ -19,6 +20,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import yea.bushroot.clickgui.Setting;
 
 public class TargetStrafe
         extends Module {
@@ -83,7 +85,22 @@ public class TargetStrafe
 
     public TargetStrafe() {
         super("TargetStrafe", 0, Module.Category.COMBAT);
+        ExampleMod.instance.settingsManager.rSetting(new Setting("ThirdPerson", this, false));
 
+    }
+
+    @Override
+    public void onEnable() {
+        if(ExampleMod.instance.settingsManager.getSettingByName(this.name, "ThirdPerson").getValBoolean()) {
+            mc.gameSettings.thirdPersonView = 1;
+        }
+        super.onEnable();
+    }
+
+    @Override
+    public void onDisable() {
+        mc.gameSettings.thirdPersonView = 0;
+        super.onDisable();
     }
 
     public static void setSpeed(double d, float f, double d2, double d3) {

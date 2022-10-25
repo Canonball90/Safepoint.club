@@ -2,9 +2,8 @@ package com.example.examplemod.Module.COMBAT;
 
 import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.Module;
-import com.example.examplemod.Utils.RenderUtil;
-import com.example.examplemod.Utils.TimerUtil;
-import com.example.examplemod.Utils.WorldUtil;
+import com.example.examplemod.Utils.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
@@ -25,6 +24,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import yea.bushroot.clickgui.Setting;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -33,12 +33,19 @@ import java.util.stream.Collectors;
 public class AutoCrystal extends Module {
     public AutoCrystal() {
         super("AutoCrystal", 0, Category.COMBAT);
+        ArrayList<String> options = new ArrayList<>();
+
+        options.add("Full");
+        options.add("Semi");
+        options.add("None");
 
         ExampleMod.instance.settingsManager.rSetting(new Setting("Range", this, 4, 1, 6, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("Delay",  this, 25, 0, 250, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("MaxPlayerDamage", this, 10, 1, 20, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("HitAttempts",  this,  2, 1, 5, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("PacketBreak", this, false));
+        ExampleMod.instance.settingsManager.rSetting(new Setting("Rotation", this, options, "None"));
+        ExampleMod.instance.settingsManager.rSetting(new Setting("Alpha", this, 0.1, 0.001, 1, false));
     }
 
     public BlockPos targetPos = null;
@@ -103,12 +110,16 @@ public class AutoCrystal extends Module {
 
     @SubscribeEvent
     public void onRender(RenderWorldLastEvent event) {
+        float alpha = (float) ExampleMod.instance.settingsManager.getSettingByName(this.name, "Alpha").getValDouble();
         if(targetPos != null) {
             AxisAlignedBB box = mc.world.getBlockState(targetPos).getSelectedBoundingBox(mc.world, targetPos).offset(-mc.getRenderManager().viewerPosX, -mc.getRenderManager().viewerPosY, -mc.getRenderManager().viewerPosZ);
             RenderUtil.prepare();
             RenderGlobal.drawBoundingBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 1f, 1f, 1f, 1f);
-            RenderGlobal.renderFilledBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 1f, 1f, 1f, 0.5f);
+            RenderGlobal.renderFilledBox(box.minX, box.minY, box.minZ, box.maxX, box.maxY, box.maxZ, 1f, 1f, 1f, alpha);
             RenderUtil.release();
+        }
+        if(targetPos == null) {
+            alpha--;
         }
     }
 

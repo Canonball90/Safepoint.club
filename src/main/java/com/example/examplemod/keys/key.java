@@ -1,5 +1,6 @@
 package com.example.examplemod.keys;
 
+import canon.ball.rewriteGUI.ClickGui;
 import com.example.examplemod.Client;
 import com.example.examplemod.ExampleMod;
 import com.example.examplemod.Module.CLIENT.Panic;
@@ -16,10 +17,10 @@ public class key {
             if (Keyboard.getEventKey() != Keyboard.KEY_NONE) {
                 Client.keyPress(Keyboard.getEventKey());
                 if (Keyboard.getEventKey() == Keyboard.KEY_RSHIFT && !Panic.isPanic) {
-                    Minecraft.getMinecraft().displayGuiScreen(ExampleMod.instance.clickGui);
+                    //Minecraft.getMinecraft().displayGuiScreen(ExampleMod.instance.clickGui);
                 }
                 if (Keyboard.getEventKey() == Keyboard.KEY_RCONTROL && !Panic.isPanic) {
-                    Minecraft.getMinecraft().displayGuiScreen(new SkeetGUI());
+                    //Minecraft.getMinecraft().displayGuiScreen(new ClickGui());
                 }
             }
         }

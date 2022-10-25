@@ -2,6 +2,7 @@ package com.example.examplemod;
 
 import com.example.examplemod.Module.CLIENT.*;
 import com.example.examplemod.Module.COMBAT.*;
+import com.example.examplemod.Module.EXPLOIT.FakePearl;
 import com.example.examplemod.Module.EXPLOIT.HackerDetector;
 import com.example.examplemod.Module.HUD.HackList;
 import com.example.examplemod.Module.HUD.Particleeesss;
@@ -110,6 +111,9 @@ public class Client {
         modules.add(new PigPOV());
         modules.add(new NoFall());
         modules.add(new HitAnimation());
+        modules.add(new FakePearl());
+        modules.add(new MCF());
+        modules.add(new ClientTime());
 
         clickGuiManager = new ClickGuiManager();
 

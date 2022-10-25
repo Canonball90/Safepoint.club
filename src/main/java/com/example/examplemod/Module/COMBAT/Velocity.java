@@ -16,6 +16,7 @@ public class Velocity extends Module {
         if (mc.player.hurtTime > 0) {
             mc.player.connection.sendPacket(new CPacketPlayer.Position(0, 0, 0, true));
 
+            /*
             mc.player.setPosition(mc.player.posX, mc.player.posY - 0.26, mc.player.posZ);
             mc.player.setPosition(mc.player.posX, mc.player.posY + 0.3, mc.player.posZ);
 
@@ -23,7 +24,7 @@ public class Velocity extends Module {
             mc.player.motionX = 0;
             mc.player.motionY = 0;
             mc.player.motionZ = 0;
-
+*/
         }
     }
 }

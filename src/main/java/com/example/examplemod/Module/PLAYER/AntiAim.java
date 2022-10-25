@@ -11,6 +11,6 @@ public class AntiAim extends Module {
 
     @SubscribeEvent
     public void onTick(TickEvent.PlayerTickEvent e){
-        e.player.setRotationYawHead(e.player.getRotationYawHead() + 1);
+        e.player.setRotationYawHead(e.player.getRotationYawHead() + 6);
     }
 }

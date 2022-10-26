@@ -114,6 +114,7 @@ public class Client {
         modules.add(new FakePearl());
         modules.add(new MCF());
         modules.add(new ClientTime());
+        modules.add(new ElytraFly());
 
         clickGuiManager = new ClickGuiManager();
 

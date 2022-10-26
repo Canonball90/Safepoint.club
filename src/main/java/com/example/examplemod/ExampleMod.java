@@ -33,6 +33,7 @@ public class ExampleMod
     public ClickGuiManager clickGui;
 
     private static Logger logger;
+    public long time;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {

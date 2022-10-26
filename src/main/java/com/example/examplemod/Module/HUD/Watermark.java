@@ -44,12 +44,19 @@ public class Watermark extends Module {
         ArrayList<String> options = new ArrayList<>();
 
         ExampleMod.instance.settingsManager.rSetting(new Setting("X", this, 8.0, 0.0, 255.0,false));
-        ExampleMod.instance.settingsManager.rSetting(new Setting("Y", this, 8.0, 0.0, 255.0, false));
+        ExampleMod.instance.settingsManager.rSetting(new Setting("Y", this, 4.0, 0.0, 10.0, false));
+        ExampleMod.instance.settingsManager.rSetting(new Setting("Speed", this, 8.0, 0.0, 255.0,false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("CSGO", this, true));
+        ExampleMod.instance.settingsManager.rSetting(new Setting("Move", this, true));
+
     }
+
+    private float offsetx = 0.0F;
 
     @SubscribeEvent
     public void onRender(RenderGameOverlayEvent.Post e) {
+        boolean scroll = ExampleMod.instance.settingsManager.getSettingByName(this.name,"Move").getValBoolean();
+        int speed = (int) ExampleMod.instance.settingsManager.getSettingByName(this.name,"Speed").getValDouble();
         switch (e.getType()) {
             case TEXT:
                 int y = 10;
@@ -76,7 +83,12 @@ public class Watermark extends Module {
                                 " | FPS: " + Minecraft.getDebugFPS(), 9, 10, -1);
                     }
                 }else{
-                    fr.drawStringWithShadow(Client.cName + " | " + mc.getSession().getUsername(), (float) ExampleMod.instance.settingsManager.getSettingByName(this.name, "X").getValDouble(), (float) ExampleMod.instance.settingsManager.getSettingByName(this.name, "Y").getValDouble(), -1);
+                    fr.drawStringWithShadow(Client.cName + " | " + mc.getSession().getUsername(), 8 + offsetx, (float) ExampleMod.instance.settingsManager.getSettingByName(this.name, "Y").getValDouble(), -1);
+                    if(scroll){
+                        offsetx += speed;
+                    } else offsetx = 0;
+                    if(mc.displayWidth + FontUtils.normal.getStringWidth(Client.cName + " | " + mc.getSession().getUsername()) + 10 < offsetx) offsetx = (float) (FontUtils.normal.getStringWidth(Client.cName + " | " + mc.getSession().getUsername()) * -1 - 10);
+
                 }
                 /*
                 fr.drawString(ChatFormatting.RED + "Safe" + ChatFormatting.WHITE + "point", 5, 5, -1);

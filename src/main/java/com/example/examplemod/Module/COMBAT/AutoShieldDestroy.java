@@ -17,7 +17,7 @@ public class AutoShieldDestroy extends Module {
     private int oldcurrentitem;
 
     public AutoShieldDestroy() {
-        super("AutoShieldDestroy", Keyboard.KEY_NONE, Category.COMBAT);
+        super("ShieldBreaker", Keyboard.KEY_NONE, Category.COMBAT);
 
         ExampleMod.instance.settingsManager.rSetting(new Setting("Delay", this, 600, 0, 900, true));
         ExampleMod.instance.settingsManager.rSetting(new Setting("SwapBack", this, true));

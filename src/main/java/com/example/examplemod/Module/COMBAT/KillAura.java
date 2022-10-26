@@ -37,7 +37,7 @@ public class KillAura extends Module {
 
         ExampleMod.instance.settingsManager.rSetting(new Setting("Range", this, 3.8, 1, 10, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("OnlyCriticals", this, true));
-        ExampleMod.instance.settingsManager.rSetting(new Setting("CriticalsFallDistance", this, 0.2, 0.2, 0.4, false));
+        ExampleMod.instance.settingsManager.rSetting(new Setting("CritsHeight", this, 0.2, 0.2, 0.4, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("Walls", this, true));
         ExampleMod.instance.settingsManager.rSetting(new Setting("Players", this, true));
         ExampleMod.instance.settingsManager.rSetting(new Setting("Mobs", this, false));

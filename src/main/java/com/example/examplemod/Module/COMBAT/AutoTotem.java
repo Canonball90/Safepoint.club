@@ -25,7 +25,7 @@ public class AutoTotem extends Module {
         ExampleMod.instance.settingsManager.rSetting(new Setting("HPCheck", this, true));
         ExampleMod.instance.settingsManager.rSetting(new Setting("HP", this, 5, 1, 20, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("CrystalsCheck", this, true));
-        ExampleMod.instance.settingsManager.rSetting(new Setting("CrystalsDistance", this, 7, 1, 15, false));
+        ExampleMod.instance.settingsManager.rSetting(new Setting("CrystalsRange", this, 7, 1, 15, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("FallCheck", this, true));
         ExampleMod.instance.settingsManager.rSetting(new Setting("FallDistance", this, 10, 5, 100, true));
         ExampleMod.instance.settingsManager.rSetting(new Setting("SwapBack", this, true));
@@ -38,7 +38,7 @@ public class AutoTotem extends Module {
         boolean hpcheck = ExampleMod.instance.settingsManager.getSettingByName(this.name, "HPCheck").getValBoolean();
         double hp = ExampleMod.instance.settingsManager.getSettingByName(this.name, "HP").getValDouble();
         boolean crystalscheck = ExampleMod.instance.settingsManager.getSettingByName(this.name, "CrystalsCheck").getValBoolean();
-        double crystalsdistance = ExampleMod.instance.settingsManager.getSettingByName(this.name, "CrystalsDistance").getValDouble();
+        double crystalsdistance = ExampleMod.instance.settingsManager.getSettingByName(this.name, "CrystalsRange").getValDouble();
         boolean fallcheck = ExampleMod.instance.settingsManager.getSettingByName(this.name, "FallCheck").getValBoolean();
         double falldistance = ExampleMod.instance.settingsManager.getSettingByName(this.name, "FallDistance").getValDouble();
         boolean swapback = ExampleMod.instance.settingsManager.getSettingByName(this.name, "SwapBack").getValBoolean();

@@ -21,25 +21,25 @@ public class FullBright extends Module {
         options.add("Gamma");
         options.add("Potion");
 
-        ExampleMod.instance.settingsManager.rSetting(new Setting("Brightness", this, options, "Mode"));
+        ExampleMod.instance.settingsManager.rSetting(new Setting("Mode", this, options, "Mode"));
     }
 
     @Override
     public void onEnable() {
 
-        if(ExampleMod.instance.settingsManager.getSettingByName(this.name, "Brightness").getValString().equalsIgnoreCase("Gamma")) {
+        if(ExampleMod.instance.settingsManager.getSettingByName(this.name, "Mode").getValString().equalsIgnoreCase("Gamma")) {
             oldBright = mc.gameSettings.gammaSetting;
             mc.gameSettings.gammaSetting = 10f;
-        }else if(ExampleMod.instance.settingsManager.getSettingByName(this.name, "Brightness").getValString().equalsIgnoreCase("Potion")) {
+        }else if(ExampleMod.instance.settingsManager.getSettingByName(this.name, "Mode").getValString().equalsIgnoreCase("Potion")) {
             mc.player.addPotionEffect(new PotionEffect(Objects.requireNonNull(Potion.getPotionById(16)), 999999, 1));
         }
     }
 
     @Override
     public void onDisable() {
-        if(ExampleMod.instance.settingsManager.getSettingByName(this.name, "Brightness").getValString().equalsIgnoreCase("Gamma")) {
+        if(ExampleMod.instance.settingsManager.getSettingByName(this.name, "Mode").getValString().equalsIgnoreCase("Gamma")) {
             mc.gameSettings.gammaSetting = oldBright;
-        }else if(ExampleMod.instance.settingsManager.getSettingByName(this.name, "Brightness").getValString().equalsIgnoreCase("Potion")) {
+        }else if(ExampleMod.instance.settingsManager.getSettingByName(this.name, "Mode").getValString().equalsIgnoreCase("Potion")) {
             mc.player.removePotionEffect(Objects.requireNonNull(Potion.getPotionById(16)));
         }
     }

@@ -31,7 +31,7 @@ public class Frame {
 		this.y = 5;
 		this.barHeight = 13;
 		this.dragX = 0;
-		this.open = false;
+		this.open = true;
 		this.isDragging = false;
 		int tY = this.barHeight;
 		
@@ -67,7 +67,7 @@ public class Frame {
 	}
 
 	public void renderFrame(FontRenderer fontRenderer) {
-		Gui.drawRect(this.x, this.y , this.x + this.width, this.y + this.barHeight, new Color(0, 0, 0, 191).getRGB());
+		Gui.drawRect(this.x, this.y , this.x + this.width, this.y + this.barHeight, new Color(205, 24, 222, 150).getRGB());
 		FontUtils.normal.drawCenteredString(this.category.name(), (this.x + 43) + 3, (this.y + 0.0f) * 1 + 4, new Color(255, 255, 255, 255).getRGB());
 		if(this.open) {
 			if(!this.components.isEmpty()) {

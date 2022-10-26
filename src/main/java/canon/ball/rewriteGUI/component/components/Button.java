@@ -35,6 +35,7 @@ public class Button extends Component {
 		this.open = false;
 		height = 12;
 		int opY = offset + 12;
+		this.subcomponents.add(new Keybind(this, opY));
 		if(ExampleMod.instance.settingsManager.getSettingsByMod(mod) != null) {
 			for(Setting s : ExampleMod.instance.settingsManager.getSettingsByMod(mod)){
 				if(s.isCombo()){
@@ -51,7 +52,6 @@ public class Button extends Component {
 				}
 			}
 		}
-		this.subcomponents.add(new Keybind(this, opY));
 	}
 	
 	@Override
@@ -66,9 +66,9 @@ public class Button extends Component {
 
 	@Override
 	public void renderComponent() {
-		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, this.isHovered ? (this.mod.toggled ? new Color(255, 0, 255, 191).darker().getRGB() : new Color(15, 15, 15, 191).getRGB()) : (this.mod.toggled ? new Color(255, 0, 255, 191).getRGB() : new Color(30, 30, 30, 191).getRGB()));
-		FontUtils.normal.drawString(this.mod.getName(), (parent.getX() + 2) + 2, (parent.getY() + offset + 2) + 2, new Color(255, 255, 255).getRGB());
-		if(this.subcomponents.size() > 2)
+		Gui.drawRect(parent.getX(), this.parent.getY() + this.offset, parent.getX() + parent.getWidth(), this.parent.getY() + 12 + this.offset, this.isHovered ? new Color(15, 15, 15, 191).getRGB() : new Color(30, 30, 30, 191).getRGB());
+		FontUtils.normal.drawString(this.mod.getName(), (parent.getX() + 2) + 2, (parent.getY() + offset + 2) + 2, this.mod.toggled ? new Color(205, 24, 222).getRGB() : new Color(255, 255, 255).getRGB());
+		if(this.subcomponents.size() >= 2)
 			FontUtils.normal.drawString(this.open ? "-" : "+", (parent.getX() + parent.getWidth() - 10), (parent.getY() + offset) + 4, new Color(255, 255, 255, 255).getRGB());
 		if(this.open) {
 			if(!this.subcomponents.isEmpty()) {

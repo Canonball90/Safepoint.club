@@ -9,7 +9,19 @@ import com.example.examplemod.Module.Module;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+
 import org.lwjgl.opengl.GL11;
+import java.awt.*;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.example.examplemod.ExampleMod;
+import com.example.examplemod.Module.Module;
+import com.example.examplemod.Utils.RenderUtils;
+import com.example.examplemod.Utils.particle.ParticleSystem;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.ResourceLocation;
 
 public class ClickGui extends GuiScreen {
 
@@ -33,6 +45,7 @@ public class ClickGui extends GuiScreen {
 
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		RenderUtils.drawGradient(0, 0, width, height, new Color(211, 0, 255, 146).getRGB(), new Color(255, 0, 58, 128).getRGB());
 		for(Frame frame : frames) {
 			frame.renderFrame(this.fontRenderer);
 			for(Component comp : frame.getComponents()) {

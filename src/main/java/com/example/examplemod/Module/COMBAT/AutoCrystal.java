@@ -41,7 +41,7 @@ public class AutoCrystal extends Module {
 
         ExampleMod.instance.settingsManager.rSetting(new Setting("Range", this, 4, 1, 6, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("Delay",  this, 25, 0, 250, false));
-        ExampleMod.instance.settingsManager.rSetting(new Setting("MaxPlayerDamage", this, 10, 1, 20, false));
+        ExampleMod.instance.settingsManager.rSetting(new Setting("1Damage", this, 10, 1, 20, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("HitAttempts",  this,  2, 1, 5, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("PacketBreak", this, false));
         ExampleMod.instance.settingsManager.rSetting(new Setting("Rotation", this, options, "None"));
@@ -72,7 +72,7 @@ public class AutoCrystal extends Module {
                 double playerDamage = calculateDamage(pos.getX(), pos.getY(), pos.getZ(), target);
                 double selfDamage = calculateDamage(pos.getX(), pos.getY(), pos.getZ(), mc.player);
                 if (playerDamage > .5) {
-                    if (selfDamage > ExampleMod.instance.settingsManager.getSettingByName(this.name, "MaxPlayerDamage").getValDouble()) return;
+                    if (selfDamage > ExampleMod.instance.settingsManager.getSettingByName(this.name, "MaxDamage").getValDouble()) return;
                     RayTraceResult result = mc.world.rayTraceBlocks(new Vec3d(mc.player.posX, mc.player.posY + mc.player.getEyeHeight(), mc.player.posZ), new Vec3d(pos.getX() + .5, pos.getY() - .5d, pos.getZ() + .5));
                     EnumFacing face;
                     if (result == null || result.sideHit == null) {

@@ -59,13 +59,12 @@ public class SkeetGUI extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         super.drawScreen(mouseX, mouseY, partialTicks);
         SkeetUtils.renderSkeetBox(new Quad(10, 10, 400, 400));
-        FontUtils.normal.drawString("Safepoint.club", 20, 390, -1);
+        FontUtils.normal.drawString("Safepoint.club", 20, 388, -1);
 
         int offset = 0;
         for (Module.Category category : Module.Category.values()) {
-            RenderUtils.drawRect((int) posX, (int) (posY + 1 + offset), (int) (posX + 60), (int) (posY + 45 + offset),category.equals(selectedCategory) ? new Color(55, 255, 0).getRGB() : new Color(28,28,28).getRGB());
-            Minecraft.getMinecraft().fontRenderer.drawString(category.name(),(int)posX + 2, (int)(posY + 20) + offset, new Color(170,170,170).getRGB());
-            offset += 50;
+            RenderUtils.drawRect((int) posX, (int) (posY + 1 + offset), (int) (posX + 60), (int) (posY + 45 + offset), category.equals(selectedCategory) ? new Color(55, 255, 0).getRGB() : new Color(28, 28, 28).getRGB());
+            Minecraft.getMinecraft().fontRenderer.drawString(category.name(), (int) posX + 2, (int) (posY + 20) + offset, new Color(170, 170, 170).getRGB());
         }
         offset = 0;
         for (Module m : Client.getModulesInCategory(selectedCategory)) {

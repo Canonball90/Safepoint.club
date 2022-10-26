@@ -18,6 +18,8 @@ import net.minecraft.util.math.Vec3d;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL32;
 
+import static com.example.examplemod.Utils.RenderUtils.drawRect;
+
 public class RenderUtil {
     public static void trace(Minecraft mc, Entity e, float partialTicks, int mode) {
         if (mc.getRenderManager().renderViewEntity != null) {
@@ -316,4 +318,39 @@ public class RenderUtil {
         GL11.glVertex3d((double) axisAlignedBB.maxX, (double) axisAlignedBB.maxY, (double) axisAlignedBB.minZ);
         GL11.glEnd();
     }
+
+    public static void drawBorderedRect(float x, float y, float x1, float y1, final int insideC, final int borderC) {
+        enableGL2D();
+        x *= 2.0f;
+        x1 *= 2.0f;
+        y *= 2.0f;
+        y1 *= 2.0f;
+        GL11.glScalef(0.5f, 0.5f, 0.5f);
+        drawVLine(x, y, y1 - 1.0f, borderC);
+        drawVLine(x1 - 1.0f, y, y1, borderC);
+        drawHLine(x, x1 - 1.0f, y, borderC);
+        drawHLine(x, x1 - 2.0f, y1 - 1.0f, borderC);
+        drawRect((int) (x + 1.0f), (int) (y + 1.0f), (int) (x1 - 1.0f), (int) (y1 - 1.0f), insideC);
+        GL11.glScalef(2.0f, 2.0f, 2.0f);
+        disableGL2D();
+    }
+
+    public static void drawVLine(final float paramFloat1, float paramFloat2, float paramFloat3, final int paramInt) {
+        if (paramFloat3 < paramFloat2) {
+            final float f = paramFloat2;
+            paramFloat2 = paramFloat3;
+            paramFloat3 = f;
+        }
+        drawRect((int) paramFloat1, (int) (paramFloat2 + 1.0f), (int) (paramFloat1 + 1.0f), (int) paramFloat3, paramInt);
+    }
+
+    public static void drawHLine(float paramFloat1, float paramFloat2, final float paramFloat3, final int paramInt) {
+        if (paramFloat2 < paramFloat1) {
+            final float f = paramFloat1;
+            paramFloat1 = paramFloat2;
+            paramFloat2 = f;
+        }
+        drawRect((int) paramFloat1, (int) paramFloat3, (int) (paramFloat2 + 1.0f), (int) (paramFloat3 + 1.0f), paramInt);
+    }
+
 }

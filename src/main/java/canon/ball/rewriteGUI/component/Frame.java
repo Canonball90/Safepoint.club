@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import canon.ball.rewriteGUI.component.components.Button;
 import com.example.examplemod.Client;
 import com.example.examplemod.Module.Module;
+import com.example.examplemod.Utils.RenderUtils;
 import font.FontUtils;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -67,8 +68,9 @@ public class Frame {
 	}
 
 	public void renderFrame(FontRenderer fontRenderer) {
-		Gui.drawRect(this.x, this.y , this.x + this.width, this.y + this.barHeight, new Color(205, 24, 222, 150).getRGB());
-		FontUtils.normal.drawCenteredString(this.category.name(), (this.x + 43) + 3, (this.y + 0.0f) * 1 + 4, new Color(255, 255, 255, 255).getRGB());
+		//Gui.drawRect(this.x, this.y , this.x + this.width, this.y + this.barHeight, new Color(0, 0, 0, 191).getRGB());
+		RenderUtils.drawBorderedRect(this.x, this.y, this.x + this.width, (int) (this.y + this.barHeight), 1, new Color(231, 0, 255, 255).getRGB(), new Color(209, 0, 232, 205).getRGB());
+		FontUtils.normal.drawCenteredString(this.category.name(), (this.x + 42) + 3, (this.y + 0.0f) * 1 + 4, new Color(255, 255, 255, 255).getRGB());
 		if(this.open) {
 			if(!this.components.isEmpty()) {
 				for(Component component : components) {

@@ -64,16 +64,16 @@ public class Watermark extends Module {
                         String text = Client.cName + " | " + mc.getSession().getUsername() + " | " + Objects.requireNonNull(mc.getCurrentServerData()).serverIP +
                                 " | FPS: " + Minecraft.getDebugFPS() + " | Ping: " + mc.getCurrentServerData().pingToServer;
 
-                        drawRect(5, 5, FontUtils.normal.getStringWidth(text) > 190 ? (int) (FontUtils.normal.getStringWidth(text) + 14) : 200, 14, new Color(0x151515).hashCode());
-                        drawRect(5, 5, FontUtils.normal.getStringWidth(text) > 190 ? (int) (FontUtils.normal.getStringWidth(text) + 14) : 200, 4, rainbow(300));
+                        drawRect(5, 5, FontUtils.normal.getStringWidth(text) > 200 ? (int) (FontUtils.normal.getStringWidth(text) + 14) : 210, 19, new Color(0x151515).hashCode());
+                        drawRect(5, 5, FontUtils.normal.getStringWidth(text) > 200 ? (int) (FontUtils.normal.getStringWidth(text) + 14) : 210, 4, rainbow(300));
 
-                        FontUtils.normal.drawString(text, 10, 10, -1);
+                        FontUtils.normal.drawString(text, 9, 10, -1);
                     } catch (Exception ex) {
-                        drawRect(5, 5, 200, 14, new Color(0x151515).hashCode());
-                        drawRect(5, 5, 200, 4, rainbow(300));
+                        drawRect(5, 5, 210, 19, new Color(0x151515).hashCode());
+                        drawRect(5, 5, 210, 4, rainbow(300));
 
                         FontUtils.normal.drawString(Client.cName + " | " + mc.getSession().getUsername() +
-                                " | FPS: " + Minecraft.getDebugFPS(), 10, 10, -1);
+                                " | FPS: " + Minecraft.getDebugFPS(), 9, 10, -1);
                     }
                 }else{
                     fr.drawStringWithShadow(Client.cName + " | " + mc.getSession().getUsername(), (float) ExampleMod.instance.settingsManager.getSettingByName(this.name, "X").getValDouble(), (float) ExampleMod.instance.settingsManager.getSettingByName(this.name, "Y").getValDouble(), -1);

@@ -54,6 +54,7 @@ public class TargetStrafe
     public final boolean doStrafeAtSpeed(double d) {
         boolean bl = true;
         Entity entity = this.getTargetEz();
+
         if (entity != null) {
             if (TargetStrafe.mc.player.onGround) {
                 TargetStrafe.mc.player.jump();
@@ -74,13 +75,18 @@ public class TargetStrafe
 
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent playerTickEvent) {
-        if (TargetStrafe.mc.player.collidedHorizontally && this.timerUtil.hasReached(80.0)) {
-            this.timerUtil.reset();
-            this.invertStrafe();
+        try {
+            if (mc.player == null) return;
+            if (mc.player.collidedHorizontally && timerUtil.hasReached(80.0)) {
+                timerUtil.reset();
+                invertStrafe();
+            }
+            mc.player.movementInput.moveForward = 0.0f;
+            double d = this.getMovementSpeed();
+            doStrafeAtSpeed(d);
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        TargetStrafe.mc.player.movementInput.moveForward = 0.0f;
-        double d = this.getMovementSpeed();
-        this.doStrafeAtSpeed(d);
     }
 
     public TargetStrafe() {

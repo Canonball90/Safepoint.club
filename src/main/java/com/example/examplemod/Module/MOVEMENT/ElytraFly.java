@@ -46,25 +46,26 @@ public class ElytraFly extends Module {
     }
     @SubscribeEvent
     public void onPlayerTick(TickEvent.PlayerTickEvent playerTickEvent) {
-        float yaw = (float)Math.toRadians(ElytraFly.mc.player.rotationYaw);
-        double sped = 10 / 10.0;
-        double speed = ExampleMod.instance.settingsManager.getSettingByName(this.name, "Speed").getValDouble();
-        double downspeed = ExampleMod.instance.settingsManager.getSettingByName(this.name, "DownSpeed").getValDouble();
-        double upspeed = ExampleMod.instance.settingsManager.getSettingByName(this.name, "UpSpeed").getValDouble();
-        mc.player.setVelocity(0,0,0);
-        if(mc.player.movementInput.forwardKeyDown || mc.player.movementInput.leftKeyDown || mc.player.movementInput.rightKeyDown || mc.player.movementInput.backKeyDown) {
-         //   mc.player.motionX = (double) MathHelper.sin((float) yaw) * -sped;
-         //   mc.player.motionZ = (double) MathHelper.cos((float) yaw) * sped;
-            strafe((float)speed);
-        }
-        if(mc.player.movementInput.jump){
-            mc.player.motionY = upspeed;
-        }else if(mc.player.movementInput.sneak){
-            mc.player.motionY = -downspeed;
-        }else{
-            mc.player.motionY = 0;
-        }
+        if (mc.player.isElytraFlying()) {
+            float yaw = (float) Math.toRadians(ElytraFly.mc.player.rotationYaw);
+            double sped = 10 / 10.0;
+            double speed = ExampleMod.instance.settingsManager.getSettingByName(this.name, "Speed").getValDouble();
+            double downspeed = ExampleMod.instance.settingsManager.getSettingByName(this.name, "DownSpeed").getValDouble();
+            double upspeed = ExampleMod.instance.settingsManager.getSettingByName(this.name, "UpSpeed").getValDouble();
+            mc.player.setVelocity(0, 0, 0);
+            if (mc.player.movementInput.forwardKeyDown || mc.player.movementInput.leftKeyDown || mc.player.movementInput.rightKeyDown || mc.player.movementInput.backKeyDown) {
+                //   mc.player.motionX = (double) MathHelper.sin((float) yaw) * -sped;
+                //   mc.player.motionZ = (double) MathHelper.cos((float) yaw) * sped;
+                strafe((float) speed);
+            }
+            if (mc.player.movementInput.jump) {
+                mc.player.motionY = upspeed;
+            } else if (mc.player.movementInput.sneak) {
+                mc.player.motionY = -downspeed;
+            } else {
+                mc.player.motionY = 0;
+            }
 
+        }
     }
-
 }
